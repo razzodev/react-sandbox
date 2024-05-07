@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useAuthStore } from "./store/authStore";
 import { useContentStore } from "./store/contentStore";
-import { auth, handleSigninClicked, isUserLoggedIn } from "./firebase/auth";
-import { readData, addData, readUserData } from "./firebase/firestore";
-import { user } from "./model";
+import {  handleSigninClicked, isUserLoggedIn } from "./firebase/auth";
+import {  addData, readUserData } from "./firebase/firestore";
 import "./App.css";
 
 function App() {
@@ -11,7 +10,6 @@ function App() {
   const user = useAuthStore((state) => state.user);
   const email = useAuthStore((state) => state.email);
   const isAuth = useAuthStore((state) => state.isAuthenticated);
-  const setEmail = useAuthStore((state) => state.setEmail);
   const setUserData = useContentStore((state) => state.setUserData);
   useEffect(() => {
     isUserLoggedIn();
