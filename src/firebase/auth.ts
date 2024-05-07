@@ -2,7 +2,7 @@ import { app } from "../firebase";
 import { useAuthStore } from "../store/authStore";
 import {
   // signInWithRedirect,
-  signInWithPopup,
+  // signInWithPopup,
   signInWithRedirect,
   GoogleAuthProvider,
   // inMemoryPersistence,
