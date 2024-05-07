@@ -37,18 +37,18 @@ export const word = {
 };
 
 
-type Category {
+type Category = {
   name:string,
   words:string[],
   icon:string|null,
 }
 
-type Language {
+type Language = {
   name:string,
   categories:Category[]
 }
 
-type User {
+type User = {
   displayName:string,
   email:string,
   uid:string,

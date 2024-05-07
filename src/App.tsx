@@ -46,7 +46,7 @@ function App() {
         },
       ],
     };
-    await addData("users", uid, payload);
+   uid &&  await addData("users", uid, payload);
   };
   return (
     <>
