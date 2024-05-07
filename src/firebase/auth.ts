@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/authStore";
 import {
   // signInWithRedirect,
   signInWithPopup,
-  // signInWithRedirect,
+  signInWithRedirect,
   GoogleAuthProvider,
   // inMemoryPersistence,
   setPersistence,
@@ -27,7 +27,7 @@ export const handleSigninClicked = async (e: any) => {
 
   try {
     // Sign in with a pop-up window
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithRedirect(auth, provider);
     const user = result["user"];
     console.log(user);
     useAuthStore.getState().signIn(user);
