@@ -24,7 +24,7 @@ function App() {
 
   const handleAddData = async () => {
     let payload = {
-      displayName: user.displayName,
+      displayName: user?.displayName,
       email: email,
       uid: uid,
       languages: [
