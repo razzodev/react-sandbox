@@ -5,22 +5,18 @@ import "./App.css";
 
 function App() {
 
-
   useEffect(() => {
     isUserLoggedIn();
   }, []);
 
-
-
   return (
     <>
       <section>
-
         <SignInButtons />
-
-
       </section>
-      <footer><UserObject /></footer>
+      <footer>
+        <UserObject />
+      </footer>
     </>
   );
 }

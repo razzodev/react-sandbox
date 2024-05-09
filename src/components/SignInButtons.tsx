@@ -1,11 +1,8 @@
 import { useAuthStore } from "../store/authStore";
 import { handleSigninClicked, signOutUser } from "../features/auth/auth";
 
-
-
 function SignInButtons() {
     const isAuth = useAuthStore(s => s.isAuthenticated);
-
     return (
         <>
             {isAuth ? <SignedIn /> : <LoggedOut />}
