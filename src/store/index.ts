@@ -1,7 +1,7 @@
-import * as authStore from "./authStore";
-import * as contentStore from "./contentStore";
+import { useAuthStore } from "./authStore";
+import { useContentStore } from "./contentStore";
 
-export const store = {
-  auth: authStore,
-  content: contentStore,
+export {
+  useAuthStore,
+  useContentStore,
 };
