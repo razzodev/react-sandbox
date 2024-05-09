@@ -10,14 +10,12 @@ function App() {
   }, []);
 
   return (
-    <>
-      <section>
+    <div className='app'>
         <SignInButtons />
-      </section>
-      <footer>
+      <br />
+      <br />
         <UserObject />
-      </footer>
-    </>
+    </div>
   );
 }
 

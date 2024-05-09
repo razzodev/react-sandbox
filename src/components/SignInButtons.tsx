@@ -13,9 +13,7 @@ function SignedIn() {
     const email = useAuthStore(s => s.email);
     const handleSignOut = async () => await signOutUser()
     return (<>
-        <div>
-            <p>email: {email}</p>
-        </div>
+        <span>{email}</span>
         <button onClick={handleSignOut}>Sign out</button>
     </>)
 }
