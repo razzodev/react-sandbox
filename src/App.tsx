@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { isUserLoggedIn } from "./firebase/auth";
+import { isUserLoggedIn } from "./features/auth/auth";
 import { SignInButtons, UserObject } from "./components";
 import "./App.css";
 

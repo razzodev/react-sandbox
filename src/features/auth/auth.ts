@@ -1,5 +1,5 @@
-import { app } from "../firebase";
-import { useAuthStore } from "../store/authStore";
+import { app } from "../../config/firebase";
+import { useAuthStore } from "../../store/authStore";
 import {
 
   GoogleAuthProvider, setPersistence,

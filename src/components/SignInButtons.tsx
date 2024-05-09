@@ -1,5 +1,5 @@
 import { useAuthStore } from "../store/authStore";
-import { handleSigninClicked, signOutUser } from "../firebase/auth";
+import { handleSigninClicked, signOutUser } from "../features/auth/auth";
 
 
 

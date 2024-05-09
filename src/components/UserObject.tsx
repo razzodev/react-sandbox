@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAuthStore, useContentStore } from "../store";
-import { addData, readUserData, deleteData } from "../firebase/firestore";
+import { addData, readUserData, deleteData } from "../features/database/firestore.ts";
 
 function UserObject() {
     const uid = useAuthStore((state) => state.uid);
