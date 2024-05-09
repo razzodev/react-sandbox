@@ -27,7 +27,8 @@ export const useAuthStore = create<State>((set) => ({
       isAuthenticated: true,
       email: payload.email,
     })),
-      callback && callback;
+    console.log('signed in')
+      callback && callback();
   },
   signOut: (callback) => {
     set(() => ({
@@ -37,7 +38,7 @@ export const useAuthStore = create<State>((set) => ({
       uid: null,
     })),
       callback && callback();
-    console.log("signed in");
+    console.log("signed out");
   },
   setEmail: (email) => set(() => ({ email: email })),
 }));
