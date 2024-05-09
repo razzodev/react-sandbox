@@ -26,6 +26,34 @@ export const user:User = {
   ],
 };
 
+export let dummyPayload = {
+  displayName: '',
+  email: '',
+  uid: '',
+  languages: [
+    {
+      name: "english",
+      categories: [
+        {
+          name: "dummy",
+          words: [],
+          icon: ":dummy-icon:",
+        },
+        {
+          name: "food & drinks",
+          words: [],
+          icon: ":fork-icon:",
+        },
+        {
+          name: "dating",
+          words: [],
+          icon: ":heart-icon:",
+        },
+      ],
+    },
+  ],
+};
+
 export const word = {
   id: "chje0239ef8hn",
   original: "שלום",
