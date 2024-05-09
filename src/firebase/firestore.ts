@@ -1,7 +1,7 @@
 import { app } from "./index";
 import { getFirestore } from "firebase/firestore";
 
-import { collection, getDocs, getDoc, doc, setDoc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 
 const db = getFirestore(app);
 
@@ -17,6 +17,11 @@ export async function addData(collection:string, document:string, payload:any) {
     merge: true,
   });
   return response;
+}
+
+export async function deleteData(collection: string, document: string) {
+  await deleteDoc(doc(db, collection, document))
+
 }
 
 export async function readUserData(uid:string) {
