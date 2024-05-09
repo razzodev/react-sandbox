@@ -9,7 +9,6 @@ import { getAnalytics } from "firebase/analytics";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FB_API,
-  // apiKey: process.env.FB_API,
   authDomain: "react-sandbox-2968a.firebaseapp.com",
   projectId: "react-sandbox-2968a",
   storageBucket: "react-sandbox-2968a.appspot.com",

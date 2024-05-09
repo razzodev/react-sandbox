@@ -1,74 +1,62 @@
 import { app } from "../firebase";
 import { useAuthStore } from "../store/authStore";
 import {
-  // signInWithRedirect,
-  // signInWithPopup,
-  signInWithRedirect,
-  GoogleAuthProvider,
-  // inMemoryPersistence,
-  setPersistence,
-  browserLocalPersistence,
+
+  GoogleAuthProvider, setPersistence,
+  signInWithPopup, browserLocalPersistence,
   getAuth,
-  // getRedirectResult,
   onAuthStateChanged,
-  // signOut
+  signOut,
 } from "firebase/auth";
 import { Auth } from "firebase/auth";
-
 export const auth = getAuth(app);
 
-export const handleSigninClicked = async (e: any) => {
+export const handleSigninClicked = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   e.preventDefault();
   setPersistence(auth, browserLocalPersistence);
   const provider = new GoogleAuthProvider();
-  provider.setCustomParameters({
-    prompt: "select_account",
-  });
+  provider.setCustomParameters({ prompt: "select_account" });
 
   try {
-    // Sign in with a pop-up window
-    const result = await signInWithRedirect(auth, provider);
-    const user = result["user"];
-    console.log(user);
-    useAuthStore.getState().signIn(user);
+    //TO SWITCH TO REDIRECT - USE THIS INSTEAD: 
+    // await signInWithRedirect(auth, provider);
+    // const result = await getRedirectResult(auth);
+
+    const result = await signInWithPopup(auth, provider);
+    if (result) {
+      useAuthStore.getState().signIn(result['user']);
+    }
     return;
   } catch (err: any) {
-    // Handle errors here.
-    const errorMessage = err.message;
-    const errorCode = err.code;
-    let detailedErrorMessage;
-    // setError(true);
+    const errorResult = {
+      code: err['code'],
+      message: err['message'],
+      description: ''
+    }
 
-    switch (errorCode) {
+    switch (errorResult.code) {
       case "auth/operation-not-allowed":
-        detailedErrorMessage = "Email/password accounts are not enabled.";
+        errorResult.description = "Email/password accounts are not enabled.";
         break;
       case "auth/operation-not-supported-in-this-environment":
-        detailedErrorMessage =
-          "HTTP protocol is not supported. Please use HTTPS.";
+        errorResult.description = "HTTP protocol is not supported. Please use HTTPS.";
         break;
       case "auth/popup-blocked":
-        detailedErrorMessage =
-          "Popup has been blocked by the browser. Please allow popups for this website.";
+        errorResult.description = "Popup has been blocked by the browser. Please allow popups for this website.";
         break;
       case "auth/popup-closed-by-user":
-        detailedErrorMessage =
-          "Popup has been closed by the user before finalizing the operation. Please try again.";
+        errorResult.description = "Popup has been closed by the user before finalizing the operation. Please try again.";
         break;
       default:
-        detailedErrorMessage = errorMessage;
+        errorResult.description = errorResult.message;
         break;
     }
-    return {
-      errorMessage,
-      errorCode,
-      detailedErrorMessage,
-    };
+    return errorResult
   }
 };
 
-export function isUserLoggedIn() {
-  const auth:Auth = getAuth(app);
+export function isUserLoggedIn(): void {
+  const auth: Auth = getAuth(app);
   onAuthStateChanged(auth, (user) => {
     if (user) {
       useAuthStore.getState().signIn(user);
@@ -76,4 +64,10 @@ export function isUserLoggedIn() {
       useAuthStore.getState().signOut();
     }
   });
+}
+
+export const signOutUser = async (): Promise<void> => {
+  await signOut(auth);
+  useAuthStore.getState().signOut();
+  return
 }
